@@ -41,7 +41,7 @@ plug-in.
 
 %prep
 %setup -q -n gst-libav-%{version}
-%patch0 -p1
+#%patch0 -p1
 
 
 %build
