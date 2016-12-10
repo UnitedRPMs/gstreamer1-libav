@@ -1,5 +1,5 @@
 Name:           gstreamer1-libav
-Version:        1.10.0
+Version:        1.10.2
 Release:        1%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -19,7 +19,7 @@ GStreamer is a streaming media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new 
+types or processing capabilities can be added simply by installing new
 plugins.
 
 This package provides libav-based GStreamer plug-ins.
@@ -41,19 +41,16 @@ plug-in.
 
 %prep
 %setup -q -n gst-libav-%{version}
+%patch0 -p1
 
 
 %build
-
 export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
-%configure --disable-static --disable-dependency-tracking \
+%configure --disable-dependency-tracking \
+  --disable-static \
   --with-package-name="gst-libav 1.0 rpmfusion rpm" \
   --with-package-origin="http://rpmfusion.org/" \
   --with-system-libav
-
-  # https://bugzilla.gnome.org/show_bug.cgi?id=655517
-  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-
 make %{?_smp_mflags} V=1
 
 
@@ -63,7 +60,8 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %files
-%doc AUTHORS COPYING.LIB ChangeLog NEWS README TODO
+%doc AUTHORS ChangeLog NEWS README TODO
+%license COPYING.LIB
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %files devel-docs
@@ -72,8 +70,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
-* Mon Nov 14 2016 Pavlo Rudyi <paulcarroty at riseup.net> - 1.10.0-1
-- Updated to 1.10
+
+* Mon Nov 14 2016 Pavlo Rudyi <paulcarroty at riseup.net> - 1.10.2-1
+- Updated to 1.10.2
 
 * Thu Oct 06 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.9.2-1
 - Updated to 1.9.2
