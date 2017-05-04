@@ -50,7 +50,9 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
   --disable-static \
   --with-package-name="gst-libav 1.0 rpmfusion rpm" \
   --with-package-origin="http://rpmfusion.org/" \
+  --enable-silent-rules \
   --with-system-libav
+  
 make %{?_smp_mflags} V=1
 
 
