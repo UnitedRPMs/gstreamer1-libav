@@ -53,7 +53,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
   --enable-silent-rules \
   --with-system-libav
   
-make %{?_smp_mflags} V=1
+make %{?_smp_mflags} V=0
 
 
 %install
