@@ -1,5 +1,5 @@
 Name:           gstreamer1-libav
-Version:        1.11.91
+Version:        1.12.0
 Release:        2%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -72,6 +72,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Thu May 25 2017 David Vásquez <davidva AT tutanota DOT com> 1.12.0-2
+- Updated to 1.12.0-2
 
 * Sat Apr 29 2017 David Vásquez <davidva AT tutanota DOT com> 1.11.91-2
 - Updated to 1.11.91-2
