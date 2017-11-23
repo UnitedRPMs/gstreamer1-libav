@@ -1,11 +1,13 @@
 Name:           gstreamer1-libav
 Version:        1.12.3
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+# Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=726020
+Patch:		_viddec.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
@@ -40,8 +42,7 @@ plug-in.
 
 
 %prep
-%setup -q -n gst-libav-%{version}
-#%patch0 -p1
+%autosetup -n gst-libav-%{version} -p1
 
 
 %build
@@ -72,6 +73,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Thu Nov 23 2017 David Vásquez <davidva AT tutanota DOT com> 1.12.3-9  
+- Patch to use new decoding API for viddec in ffmpeg 3.4
 
 * Wed Oct 18 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.12.3-8  
 - Automatic Mass Rebuild
