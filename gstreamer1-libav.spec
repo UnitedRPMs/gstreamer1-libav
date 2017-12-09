@@ -1,6 +1,6 @@
 Name:           gstreamer1-libav
-Version:        1.12.3
-Release:        9%{?dist}
+Version:        1.12.4
+Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
@@ -73,6 +73,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Fri Dec 08 2017 David Vásquez <davidva AT tutanota DOT com> 1.12.4-7
+- Updated to 1.12.4-7  
 
 * Thu Nov 23 2017 David Vásquez <davidva AT tutanota DOT com> 1.12.3-9  
 - Patch to use new decoding API for viddec in ffmpeg 3.4
