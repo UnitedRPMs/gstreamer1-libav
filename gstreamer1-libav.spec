@@ -7,7 +7,7 @@ License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 # Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
-Patch:		      _viddec.patch
+Patch:          _viddec.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
