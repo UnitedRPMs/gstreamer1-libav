@@ -1,6 +1,6 @@
 Name:           gstreamer1-libav
 Version:        1.14.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
@@ -13,7 +13,7 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
-BuildRequires:  ffmpeg-devel
+BuildRequires:  ffmpeg3-devel
 BuildRequires:  yasm
 
 %description
@@ -73,6 +73,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Sat Apr 21 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.0-8 
+- Using ffmpeg3 for compatibility, upstream needs work in ffmpeg 4
 
 * Wed Mar 21 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.0-7 
 - Updated to 1.14.0-7
