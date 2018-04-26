@@ -1,6 +1,6 @@
 Name:           gstreamer1-libav
 Version:        1.14.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
@@ -13,7 +13,7 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
-BuildRequires:  ffmpeg3-devel
+BuildRequires:  ffmpeg-devel
 BuildRequires:  yasm
 
 %description
@@ -51,8 +51,7 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
   --disable-static \
   --with-package-name="gst-libav 1.0 rpmfusion rpm" \
   --with-package-origin="http://rpmfusion.org/" \
-  --enable-silent-rules \
-  --with-system-libav
+  --enable-silent-rules 
   
 make %{?_smp_mflags} V=0
 
@@ -73,6 +72,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Thu Apr 26 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.0-9 
+- Internal ffmpeg enabled
 
 * Sat Apr 21 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.0-8 
 - Using ffmpeg3 for compatibility, upstream needs work in ffmpeg 4
