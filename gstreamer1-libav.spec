@@ -15,6 +15,7 @@ BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
 BuildRequires:  ffmpeg-devel
 BuildRequires:  yasm
+BuildRequires:	gcc-c++
 
 %description
 GStreamer is a streaming media framework, based on graphs of filters which
