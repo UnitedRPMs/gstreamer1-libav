@@ -1,5 +1,5 @@
 Name:           gstreamer1-libav
-Version:        1.14.4
+Version:        1.15.1
 Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -7,7 +7,7 @@ License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 # Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
-Patch:          _viddec.patch
+#Patch:          _viddec.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
@@ -43,15 +43,16 @@ plug-in.
 
 
 %prep
-%autosetup -n gst-libav-%{version} -p1
+%autosetup -n gst-libav-%{version} 
 
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
 %configure --disable-dependency-tracking \
   --disable-static \
-  --with-package-name="gst-libav 1.0 rpmfusion rpm" \
-  --with-package-origin="http://rpmfusion.org/" \
+  --with-package-name="gst-libav 1.0 UnitedRPMs" \
+  --with-package-origin="https://unitedrpms.github.io" \
+  --with-system-libav \
   --enable-silent-rules 
   
 make %{?_smp_mflags} V=0
@@ -73,6 +74,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Fri Jan 18 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.15.1-7
+- Updated to 1.15.1-7
 
 * Wed Oct 03 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.14.4-7
 - Updated to 1.14.4-7
