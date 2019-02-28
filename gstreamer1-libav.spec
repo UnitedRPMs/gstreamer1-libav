@@ -1,5 +1,5 @@
 Name:           gstreamer1-libav
-Version:        1.15.1
+Version:        1.15.2
 Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -8,6 +8,7 @@ URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 # Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
 #Patch:          _viddec.patch
+Patch0:		external-ffmpeg4-dep.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
@@ -16,6 +17,7 @@ BuildRequires:  zlib-devel
 BuildRequires:  ffmpeg-devel
 BuildRequires:  yasm
 BuildRequires:	gcc-c++
+
 
 %description
 GStreamer is a streaming media framework, based on graphs of filters which
@@ -43,7 +45,7 @@ plug-in.
 
 
 %prep
-%autosetup -n gst-libav-%{version} 
+%autosetup -n gst-libav-%{version} -p1
 
 
 %build
@@ -53,13 +55,18 @@ export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
   --with-package-name="gst-libav 1.0 UnitedRPMs" \
   --with-package-origin="https://unitedrpms.github.io" \
   --with-system-libav \
+  --disable-fatal-warnings \
   --enable-silent-rules 
+
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
   
-make %{?_smp_mflags} V=0
+%make_build V=0
 
 
 %install
 %make_install V=1
+
 rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
@@ -74,6 +81,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Wed Feb 27 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.15.2-7
+- Updated to 1.15.2-7
 
 * Fri Jan 18 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.15.1-7
 - Updated to 1.15.1-7
