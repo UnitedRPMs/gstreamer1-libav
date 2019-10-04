@@ -3,5 +3,6 @@ BUILDROOT/*
 RPMS/*
 SPECS/*
 SRPMS/*
-gst-libav*.tar.xz
+*.tar.xz
 .directory
+*.rpm
