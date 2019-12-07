@@ -1,5 +1,5 @@
 Name:           gstreamer1-libav
-Version:        1.16.1
+Version:        1.16.2
 Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -8,7 +8,7 @@ URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 # Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
 #Patch:          _viddec.patch
-Patch0:		external-ffmpeg4-dep.patch
+Patch0:	external-ffmpeg4-dep.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
@@ -81,6 +81,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Wed Dec 04 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-7
+- Updated to 1.16.2-7
 
 * Wed Oct 02 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.1-7
 - Updated to 1.16.1-7
