@@ -1,6 +1,6 @@
 Name:           gstreamer1-libav
 Version:        1.16.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
@@ -14,7 +14,7 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
-BuildRequires:  ffmpeg-devel
+BuildRequires:  ffmpeg-devel >= 4.3
 BuildRequires:  yasm
 BuildRequires:	gcc-c++
 
@@ -81,6 +81,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
 
 
 %changelog
+
+* Tue Jun 23 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-8
+- Rebuilt for ffmpeg
 
 * Wed Dec 04 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-7
 - Updated to 1.16.2-7
