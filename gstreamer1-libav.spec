@@ -1,6 +1,8 @@
+%define _legacy_common_support 1
+
 Name:           gstreamer1-libav
-Version:        1.16.2
-Release:        8%{?dist}
+Version:        1.17.2
+Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
@@ -8,7 +10,7 @@ URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 # Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
 #Patch:          _viddec.patch
-Patch0:	external-ffmpeg4-dep.patch
+#Patch0:	external-ffmpeg4-dep.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
@@ -17,7 +19,8 @@ BuildRequires:  zlib-devel
 BuildRequires:  ffmpeg-devel >= 4.3
 BuildRequires:  yasm
 BuildRequires:	gcc-c++
-
+BuildRequires:	meson
+BuildRequires:	cmake
 
 %description
 GStreamer is a streaming media framework, based on graphs of filters which
@@ -49,38 +52,32 @@ plug-in.
 
 
 %build
-export CFLAGS="$RPM_OPT_FLAGS -Wno-deprecated-declarations"
-%configure --disable-dependency-tracking \
-  --disable-static \
-  --with-package-name="gst-libav 1.0 UnitedRPMs" \
-  --with-package-origin="https://unitedrpms.github.io" \
-  --with-system-libav \
-  --disable-fatal-warnings \
-  --enable-silent-rules 
+%meson \
+    -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
+    -D package-origin="https://unitedrpms.github.io" \
+    -D doc=disabled 
 
-  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-
-  
-%make_build V=0
+%meson_build 
 
 
 %install
-%make_install V=1
-
-rm $RPM_BUILD_ROOT%{_libdir}/gstreamer-1.0/libgst*.la
+%meson_install 
 
 
 %files
-%doc AUTHORS ChangeLog NEWS README TODO
-%license COPYING.LIB
+%doc AUTHORS ChangeLog NEWS README.md 
+%license COPYING
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %files devel-docs
 # Take the dir and everything below it for proper dir ownership
-%doc %{_datadir}/gtk-doc
+%doc AUTHORS ChangeLog NEWS README.md  RELEASE
 
 
 %changelog
+
+* Fri Jul 10 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.2-7
+- Updated to 1.17.2
 
 * Tue Jun 23 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.16.2-8
 - Rebuilt for ffmpeg
