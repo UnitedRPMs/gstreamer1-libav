@@ -1,7 +1,7 @@
 %define _legacy_common_support 1
 
 Name:           gstreamer1-libav
-Version:        1.17.2
+Version:        1.17.90
 Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -75,6 +75,9 @@ plug-in.
 
 
 %changelog
+
+* Tue Aug 25 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.90-7
+- Updated to 1.17.90
 
 * Fri Jul 10 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.17.2-7
 - Updated to 1.17.2
