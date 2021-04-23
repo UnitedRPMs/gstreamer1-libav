@@ -1,7 +1,7 @@
 %define _legacy_common_support 1
 
 Name:           gstreamer1-libav
-Version:        1.18.3
+Version:        1.18.4
 Release:        7%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
@@ -52,16 +52,16 @@ plug-in.
 
 
 %build
-%meson \
+meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir=/usr/bin --sbindir=/usr/sbin --includedir=/usr/include --datadir=/usr/share --mandir=/usr/share/man --infodir=/usr/share/info --localedir=/usr/share/locale --sysconfdir=/etc \
     -D package-name="gst-plugins-bad 1.0 unitedrpms rpm" \
     -D package-origin="https://unitedrpms.github.io" \
     -D doc=disabled 
 
-%meson_build 
+%meson_build -C build
 
 
 %install
-%meson_install 
+%meson_install -C build
 
 
 %files
@@ -75,6 +75,9 @@ plug-in.
 
 
 %changelog
+
+* Mon Apr 19 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.4-7
+- Updated to 1.18.4
 
 * Mon Jan 25 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.18.3-7
 - Updated to 1.18.3
