@@ -2,21 +2,19 @@
 
 Name:           gstreamer1-libav
 Version:        1.19.3
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        GStreamer 1.0 libav-based plug-ins
 Group:          Applications/Multimedia
 License:        LGPLv2+
 URL:            http://gstreamer.freedesktop.org/
 Source0:        http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
-# Thanks to Jana Saout; See https://bugzilla.gnome.org/show_bug.cgi?id=789193
-#Patch:          _viddec.patch
-#Patch0:	external-ffmpeg4-dep.patch
+Patch:		0001-gst-libav-fix-build-with-ffmpeg-5.0.0.patch
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  orc-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
-BuildRequires:  ffmpeg-devel >= 4.3
+BuildRequires:  ffmpeg-devel
 BuildRequires:  yasm
 BuildRequires:	gcc-c++
 BuildRequires:	meson
@@ -75,6 +73,9 @@ meson build --prefix=/usr --libdir=%{_libdir} --libexecdir=/usr/libexec --bindir
 
 
 %changelog
+
+* Sat Jan 22 2022 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.3-8
+- Rebuilt for ffmpeg
 
 * Wed Nov 17 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.19.3-7
 - Updated to 1.19.3
